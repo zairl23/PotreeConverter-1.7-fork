@@ -156,3 +156,20 @@ Examples:
 
 	# using a swiss projection. Use http://spatialreference.org/ to find projections in proj4 format
 	./PotreeConverter.exe C:/data -o C:/potree_converted -p pageName --projection "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +towgs84=674.4,15.1,405.3,0,0,0,0 +units=m +no_defs" --overwrite
+
+
+fix:
+
+global replace: 
+
+  #include <filesystem> -> #include <experimental/filesystem>
+  namespace fs = std::filesystem; -> namespace fs = std::experimental::filesystem;
+
+src/BINPointReader.cpp: add
+
+  #include <cstring>
+  using std::memcpy;
+
+reset Makefile:
+
+  change -DLASZIP_LIBRARY=$(PWD)/../PotreeConverter/LAStools/LASzip/build/src/liblaszip.so to your absolute path
