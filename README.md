@@ -162,14 +162,20 @@ fix log:
 
 global replace: 
 
+```shell
   #include <filesystem> -> #include <experimental/filesystem>
   namespace fs = std::filesystem; -> namespace fs = std::experimental::filesystem;
+```
 
 src/BINPointReader.cpp: add
 
+```shell
   #include <cstring>
   using std::memcpy;
+```
 
 reset Makefile:
 
+```shell
   change -DLASZIP_LIBRARY=$(PWD)/../PotreeConverter/LAStools/LASzip/build/src/liblaszip.so to your absolute path
+```
